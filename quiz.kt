@@ -1,3 +1,7 @@
+fun main() {
+    Quiz.printProgressBar()
+}
+
 /*
 class FillInTheBlankQuestion(
     val questionText: String,
@@ -39,6 +43,12 @@ class Quiz {
     }
 }
 
-fun main() {
-    println("${Quiz.answered} of ${Quiz.total} questions answered so far.")
+val Quiz.StudentProgress.progressText: String
+    get() = "${answered} of ${total} questions answered"
+
+fun Quiz.StudentProgress.printProgressBar() {
+    repeat(Quiz.answered) { print("▓") }
+    repeat(Quiz.total - Quiz.answered) { print("▒") }
+    println()
+    println(Quiz.progressText)
 }
